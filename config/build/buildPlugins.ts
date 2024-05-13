@@ -1,16 +1,17 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { WebpackPluginInstance, ProgressPlugin } from "webpack";
 import { BuildPathsType } from "./types/config";
-
-const showBuildingProgress = (percentage: number, message: string, ...args: any[]) => {
-    console.info(`${(percentage * 100).toFixed()}% ${message} ${args}`);
-};
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 export function buildPlugins(paths: BuildPathsType): WebpackPluginInstance[] {
     return [
         new HtmlWebpackPlugin({
             template: paths.html,
         }),
-        new ProgressPlugin(showBuildingProgress),
+        new ProgressPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].[contenthash:8].css',
+            chunkFilename: 'css/[name].[contenthash:8].css'
+        }),
     ]
 }

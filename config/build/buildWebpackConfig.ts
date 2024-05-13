@@ -7,7 +7,7 @@ import { buildDevServer } from "./buildDevServer";
 
 export function buildWebpackConfig({ paths, mode, port, isDevMode }: BuildOptionsType): Configuration {
     return {
-        mode,
+        mode: mode,
         entry: paths.entry,
         output: {
             filename: "[name].[contenthash].js",
@@ -16,7 +16,7 @@ export function buildWebpackConfig({ paths, mode, port, isDevMode }: BuildOption
         },
         plugins: buildPlugins(paths),
         module: {
-            rules: buildLoaders(),
+            rules: buildLoaders(isDevMode),
         },
         resolve: buildResolvers(),
         devtool: isDevMode ? 'inline-source-map' : undefined,

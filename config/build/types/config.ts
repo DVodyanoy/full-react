@@ -5,7 +5,7 @@ export type BuildPathsType = {
     html: string;
 };
 
-export type BuildEndType = {
+export type BuildEnvType = {
     mode: BuildModeType;
     port: number;
 };
