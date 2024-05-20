@@ -14,11 +14,11 @@ export function buildWebpackConfig({ paths, mode, port, isDevMode }: BuildOption
             path: paths.build,
             clean: true,
         },
-        plugins: buildPlugins(paths),
+        plugins: buildPlugins(paths, isDevMode),
         module: {
             rules: buildLoaders(isDevMode),
         },
-        resolve: buildResolvers(),
+        resolve: buildResolvers(paths),
         devtool: isDevMode ? 'inline-source-map' : undefined,
         devServer: isDevMode ? buildDevServer(port) : undefined,
     }
